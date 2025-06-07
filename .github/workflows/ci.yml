@@ -9,12 +9,12 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/build.yml
+    needs: test
     with:
       node-version: '14'
 
   test:
     uses: ./.github/workflows/test.yml
-    needs: build
     with:
       node-versions: '["18.x", "20.x"]'
         
