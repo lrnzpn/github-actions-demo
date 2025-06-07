@@ -7,24 +7,24 @@ on:
     branches: [ main, develop, 'feature/*' ]
 
 jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+    with:
+      node-versions: '["18.x", "20.x"]'
+  
   build:
     uses: ./.github/workflows/build.yml
     needs: test
     with:
       node-version: '14'
-
-  test:
-    uses: ./.github/workflows/test.yml
-    with:
-      node-versions: '["18.x", "20.x"]'
         
   deploy:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Deploy
       run: |
