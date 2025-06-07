@@ -38,4 +38,4 @@ jobs:
         run: npm run build
 
       - name: Test github env vars
-        run: echo ${{ inputs.environment }} ${{ vars.API_TEST}}
+        run: ${{ vars.API_TEST}}
