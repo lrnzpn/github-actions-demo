@@ -15,4 +15,29 @@ describe('API Tests', () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual({ message: `Hello, ${name}!` });
   });
+
+  describe('POST /message', () => {
+    it('should create a new message successfully', async () => {
+      const messageData = { content: 'Test message' };
+      const response = await request(app)
+        .post('/message')
+        .send(messageData);
+
+      expect(response.status).toBe(201);
+      expect(response.body).toMatchObject({
+        content: messageData.content,
+        id: expect.any(Number),
+        createdAt: expect.any(String)
+      });
+    });
+
+    it('should return 400 when content is missing', async () => {
+      const response = await request(app)
+        .post('/message')
+        .send({});
+
+      expect(response.status).toBe(400);
+      expect(response.body).toEqual({ error: 'Content is required' });
+    });
+  });
 });
