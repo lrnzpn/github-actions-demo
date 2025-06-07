@@ -37,6 +37,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Use secret API key
-        if: ${{ secrets.API_KEY != '' }}
-        run: echo ${{ secrets.API_KEY }}
+        env: ${{ inputs.environment }}
+      - name: Test github env vars
+        run: echo ${{ inputs.environment }} ${{ vars.API_TEST}}
