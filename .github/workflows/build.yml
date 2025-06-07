@@ -6,7 +6,7 @@ on:
       node-version:
         required: false
         type: string
-        default: '14'
+        default: '18'
     secrets:
       API_KEY:
         required: false
