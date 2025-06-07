@@ -37,6 +37,5 @@ jobs:
       - name: Build project
         run: npm run build
 
-        env: ${{ inputs.environment }}
       - name: Test github env vars
         run: echo ${{ inputs.environment }} ${{ vars.API_TEST}}
