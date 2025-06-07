@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/build.yml
     needs: test
     with:
-      node-version: '14'
+      node-version: '18'
         
   deploy:
     needs: build
